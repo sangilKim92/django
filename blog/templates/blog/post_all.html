@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block title %}모든 포스트 정보{% endblock %}
+{% block header %}
+
+  <header class="masthead" style="background-image: url({% static 'img/home-bg.jph' %})">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>POST ALL</h1>
+            <span class="subheading">포스트 정보 보기</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+{% endblock %}
+{% block extrastyle %}{% static "css/home.css" %}{% endblock %}
+
+{% block content %}
+{% for post in posts %}
+    <h3><a href="{{post.get_absolute_url}}">{{post.title}}</a></h3>
+    {{ post.modify_dt|date:"N d, Y"}}
+    <p>{{post.description}}</p>
+{% endfor %}
+<div>
+    <span>
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">PreviousPage</a>
+        {% endif %}
+
+        Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number}}">NextPage</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock content %}
+
+{% block footer %}
+<div id="footer">
+    &copy; shkim 2016
+</div>
+{% endblock footer %}

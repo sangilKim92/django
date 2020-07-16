@@ -22,6 +22,11 @@ from bookmark.models import Bookmark
 from django.urls import path, include
 from mysite.views import HomeView
 
+from django.conf.urls.static import static
+from django.conf import settings
+from mysite.views import HomeView
+from mysite.views import UserCreateView, UserCreateDoneTV
+
 urlpatterns = [
 
     path('', HomeView.as_view(), name='home'),
@@ -32,6 +37,12 @@ urlpatterns = [
 
     path('bookmark/<int:pk>', BookmarkDV.as_view(), name='detail'),
 
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/register', UserCreateView.as_view(), name='register'),
+    path('accounts/register/done/', UserCreateDoneTV.as_view(), name='register_done'),
+
     #여기다가 모든 주소를 할당하긴 너무나 어려우니 프로젝트 단위로 할당한 후 프로젝트 안에서 나머지를 할당한다.
-    path('blog',include('blog.urls'))
-]
+    path('blog',include('blog.urls')),
+
+    path('photo/', include('photo.urls')),
+] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

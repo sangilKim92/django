@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block title %}post_search.html{% endblock %}
+
+{% block header %}
+
+  <header class="masthead" style="background-image: url({% static 'img/home-bg.jph' %})">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>SEARCH</h1>
+            <span class="subheading">포스트 검색정보</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+{% endblock %}
+{% block content %}
+
+    <h1 style="text-align:center;">Blog Search</h1>
+    <br>
+    <p style="align:center;">
+    <form action="." method="post"> {% csrf_token %}
+        {{ form.as_table }}
+        <input type="submit" value="검색" class="btn btn-primary btn-sm">
+    </form>
+    </p>
+    <br/><br/>
+
+    {% if object_list %}
+        {% for post in object_list %}
+        <h2><a href='{{ post.get_absolute_url }}'>{{ post.title }}</a></h2>
+        {{ post.modify_dt|date:"N d, Y" }}
+        <p>{{ post.description }}</p>
+        {% endfor %}
+
+    {% elif search_term %}
+    <b><i>Search Word({{ search_term }}) Not Found !</i></b>
+    {% endif %}
+
+{% endblock %}

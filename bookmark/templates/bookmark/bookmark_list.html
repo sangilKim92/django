@@ -47,9 +47,6 @@
             <li class="nav-item dropdown mx-1 btn btn-primary">
                 <a class="nav-link dropdown-toggle text-white" href="#" data-toggle="dropdown">Change</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{% url 'bookmark:delete' %}">Bookmark</a>
-                    <a class="dropdown-item" href="{% url 'blog:delete' %}">Blog</a>
-                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="">Album</a>
                     <a class="dropdown-item" href="">Photo</a>
                 </div>
@@ -58,7 +55,11 @@
         <ul>
             {% for bookmark in object_list %}
                 <li>
+                    {{bookmark.title}}
+
                     <a href="{% url 'bookmark:detail' bookmark.id %}">{{bookmark}}</a>
+                    <a
+                            .href="{% url  'bookmark:delete' bookmark.id %}">Bookmark</a>
                 </li>
             {% endfor %}
         </ul>

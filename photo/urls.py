@@ -6,11 +6,12 @@ from photo.models import Album, Photo
 app_name = 'photo'
 
 urlpatterns = [
-    path('', ListView.as_view(model=Album), name='index'),
+    path('', views.AlbumLV.as_view(), name = 'index'),
 
-    path('', ListView.as_view(model=Album), name='index'),
+    path('album', views.AlbumLV.as_view(), name= 'album_list'),
 
-    path('album/<int:pk>', ListView.as_view(model=Album), name='album_list'),
+    path('album/<int:pk>/', views.AlbumDV.as_view(), name = 'album_detail'),
 
-    path('photo/<int:pk>/', DetailView.as_view(), name='photo_detail'),
+    path('photo/<int:pk>/', views.PhotoDV.as_view(), name = 'photo_detail'),
+
 ]

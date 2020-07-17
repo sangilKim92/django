@@ -1,6 +1,24 @@
 {% extends "base.html" %}
 
+{% load static %}
 {% block title %}bookmark_confirm_delete.html{% endblock %}
+
+{% block header %}
+
+  <header class="masthead" style="background-image: url({% static 'img/home-bg.jph' %})">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Bookmark delete confirm</h1>
+            <span class="subheading">북마크 삭제 확인</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+{% endblock %}
 
 {% block content %}
 

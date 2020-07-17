@@ -1,8 +1,25 @@
 {% extends "base.html" %}
 {% load widget_tweaks %}
 
+{% load static %}
 {% block title %}post_form.html{% endblock %}
 
+{% block header %}
+
+  <header class="masthead" style="background-image: url({% static 'img/home-bg.jph' %})">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Post Form</h1>
+            <span class="subheading">포스트 작성 양식</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+{% endblock %}
 {% block content %}
     <h1>Post Create/Update - {{user}}</h1>
     <p class="font-italic">This is a creation or update form for your post.</p>

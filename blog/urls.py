@@ -33,6 +33,6 @@ urlpatterns = [
 
     path('<int:pk>/delete/', views.PostDeleteView.as_view(), name="delete",),
 
-    path('update/<int:pk>', views.PostUpdateView.as_view, name="update",),
+    path('update/<int:pk>/', views.PostUpdateView.as_view(), name="update",),
 
 ]
